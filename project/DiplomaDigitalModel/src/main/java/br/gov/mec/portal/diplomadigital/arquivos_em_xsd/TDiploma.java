@@ -42,6 +42,7 @@ import org.w3._2000._09.xmldsig_.SignatureType;
     "infDiploma",
     "signature"
 })
+@XmlRootElement(name = "diploma")
 public class TDiploma {
 
     @XmlElement(required = true)
