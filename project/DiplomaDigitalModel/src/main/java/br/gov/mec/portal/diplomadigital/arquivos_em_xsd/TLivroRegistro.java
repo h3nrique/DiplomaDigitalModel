@@ -13,7 +13,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import br.com.fabricads.gov.handler.XMLGregorianCalendarAdapter;
 
 
 /**
@@ -79,12 +82,15 @@ public class TLivroRegistro {
     protected String processoDoDiploma;
     @XmlElement(name = "DataColacaoGrau", required = true)
     @XmlSchemaType(name = "date")
+    @XmlJavaTypeAdapter(XMLGregorianCalendarAdapter.class)
     protected XMLGregorianCalendar dataColacaoGrau;
     @XmlElement(name = "DataExpedicaoDiploma", required = true)
     @XmlSchemaType(name = "date")
+    @XmlJavaTypeAdapter(XMLGregorianCalendarAdapter.class)
     protected XMLGregorianCalendar dataExpedicaoDiploma;
     @XmlElement(name = "DataRegistroDiploma", required = true)
     @XmlSchemaType(name = "date")
+    @XmlJavaTypeAdapter(XMLGregorianCalendarAdapter.class)
     protected XMLGregorianCalendar dataRegistroDiploma;
     @XmlElement(name = "ResponsavelRegistro", required = true)
     protected TLivroRegistro.ResponsavelRegistro responsavelRegistro;

@@ -16,7 +16,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import br.com.fabricads.gov.handler.XMLGregorianCalendarAdapter;
 
 
 /**
@@ -107,6 +110,7 @@ public class THistoricoEscolar {
     protected THistoricoEscolar.MatrizCurricular matrizCurricular;
     @XmlElement(name = "DataEmissaoHistorico", required = true)
     @XmlSchemaType(name = "date")
+    @XmlJavaTypeAdapter(XMLGregorianCalendarAdapter.class)
     protected XMLGregorianCalendar dataEmissaoHistorico;
     @XmlElement(name = "SituacaoAluno", required = true)
     @XmlSchemaType(name = "string")
@@ -116,6 +120,7 @@ public class THistoricoEscolar {
     protected TSituacaoAlunoEnadeHistorico situacaoENADE;
     @XmlElement(name = "DataProvaEnade")
     @XmlSchemaType(name = "date")
+    @XmlJavaTypeAdapter(XMLGregorianCalendarAdapter.class)
     protected XMLGregorianCalendar dataProvaEnade;
     @XmlElement(name = "CargaHorariaCursoIntegralizada")
     @XmlSchemaType(name = "unsignedInt")

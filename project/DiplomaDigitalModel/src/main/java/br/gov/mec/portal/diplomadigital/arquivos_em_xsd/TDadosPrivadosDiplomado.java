@@ -13,7 +13,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import br.com.fabricads.gov.handler.XMLGregorianCalendarAdapter;
 
 
 /**
@@ -191,12 +194,14 @@ public class TDadosPrivadosDiplomado {
 
         @XmlElement(name = "Data", required = true)
         @XmlSchemaType(name = "date")
+        @XmlJavaTypeAdapter(XMLGregorianCalendarAdapter.class)
         protected XMLGregorianCalendar data;
         @XmlElement(name = "FormaAcesso", required = true)
         @XmlSchemaType(name = "string")
         protected TFormaAcessoCurso formaAcesso;
         @XmlElement(name = "DataConclusao", required = true)
         @XmlSchemaType(name = "date")
+        @XmlJavaTypeAdapter(XMLGregorianCalendarAdapter.class)
         protected XMLGregorianCalendar dataConclusao;
 
         /**

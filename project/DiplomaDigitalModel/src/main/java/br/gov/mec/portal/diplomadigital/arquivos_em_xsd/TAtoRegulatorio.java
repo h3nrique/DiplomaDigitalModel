@@ -13,7 +13,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import br.com.fabricads.gov.handler.XMLGregorianCalendarAdapter;
 
 
 /**
@@ -62,11 +65,13 @@ public class TAtoRegulatorio {
     protected String numero;
     @XmlElement(name = "Data", required = true)
     @XmlSchemaType(name = "date")
+    @XmlJavaTypeAdapter(XMLGregorianCalendarAdapter.class)
     protected XMLGregorianCalendar data;
     @XmlElement(name = "VeiculoPublicacao")
     protected String veiculoPublicacao;
     @XmlElement(name = "DataPublicacao")
     @XmlSchemaType(name = "date")
+    @XmlJavaTypeAdapter(XMLGregorianCalendarAdapter.class)
     protected XMLGregorianCalendar dataPublicacao;
     @XmlElement(name = "SecaoPublicacao")
     @XmlSchemaType(name = "unsignedInt")
