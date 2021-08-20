@@ -1,10 +1,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>br.com.fabricads.gov.mec</groupId>
+	<groupId>com.github.h3nrique</groupId>
 	<artifactId>DiplomaDigitalModel</artifactId>
 	<version>1.02</version>
 	<packaging>jar</packaging>
+
+    <name>DiplomaDigitalModel</name>
+    <description>Model para Diploma Digital</description>
+    
+    <licenses>
+        <license>
+          <name>Apache License, Version 2.0</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+          <distribution>repo</distribution>
+        </license>
+    </licenses>
+    
+    <scm>
+        <url>https://github.com/h3nrique/DiplomaDigitalModel/tree/master</url>
+    </scm>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,6 +31,7 @@
 		<maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
 		<maven.source.plugin.version>3.0.1</maven.source.plugin.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
@@ -33,6 +49,7 @@
 			<version>2.3.0</version>
 		  </dependency>
 	</dependencies>
+
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<pluginManagement>
