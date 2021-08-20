@@ -6,15 +6,18 @@
 			elementFormDefault="qualified" attributeFormDefault="unqualified">
 
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema_v1.1.xsd"/>
-	<xs:include schemaLocation="leiauteDiplomaDigital_v1.00.xsd" />
-	<xs:include schemaLocation="tiposBasicos_v1.00.xsd" />
+	<xs:include schemaLocation="leiauteDiplomaDigital_v1.02.xsd" />
+	<xs:include schemaLocation="tiposBasicos_v1.02.xsd" />
     
     <xs:complexType name="TDocumentacaoAcademicaRegistro">
 		<xs:annotation>
 			<xs:documentation>Tipo Documentação Acadêmica para Emissão e Registro</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element minOccurs="1" maxOccurs="1" name="RegistroReq" type="TRegistroReq"/>
+			<xs:choice>
+				<xs:element minOccurs="1" maxOccurs="1" name="RegistroReq" type="TRegistroReq"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="RegistroSegundaViaReq" type="TRegistroSegundaViaReq"/>
+			</xs:choice>
 			<xs:element ref="ds:Signature"/>
 		</xs:sequence>
     </xs:complexType>
@@ -24,14 +27,47 @@
 			<xs:documentation>Tipo Requisição de Registro de Diploma Digital</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element minOccurs="1" maxOccurs="1" name="DadosDiploma" type="TDadosDiploma"/>
+			<xs:choice>
+				<xs:element minOccurs="1" maxOccurs="1" name="DadosDiploma" type="TDadosDiploma"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="DadosDiplomaNSF" type="TDadosDiplomaNSF"/>
+			</xs:choice>
 			<xs:element minOccurs="1" maxOccurs="1" name="DadosPrivadosDiplomado" type="TDadosPrivadosDiplomado"/>
 			<xs:element minOccurs="0" maxOccurs="1" name="TermoResponsabilidade" type="TTermoResponsabilidade"/>
 			<xs:element minOccurs="0" maxOccurs="1" name="DocumentacaoComprobatoria " type="TDocumentacaoComprobatoria"/>
 		</xs:sequence>
 		<xs:attribute name="versao" type="TVersao" use="required">
 			<xs:annotation>
-				<xs:documentation>Versão do leiaute (v1.00)</xs:documentation>
+				<xs:documentation>Versão do leiaute (v1.02)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="id" use="required">
+			<xs:annotation>
+				<xs:documentation>Id</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:ID">
+					<xs:pattern value="ReqDip[0-9]{44}" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="TRegistroSegundaViaReq">
+		<xs:annotation>
+			<xs:documentation>Tipo Requisição de Registro de Diploma Digital como segunda via de um diploma físico</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element minOccurs="1" maxOccurs="1" name="DadosDiploma" type="TDadosDiploma"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="DadosDiplomaNSF" type="TDadosDiplomaNSF"/>
+			</xs:choice>
+			<xs:element minOccurs="1" maxOccurs="1" name="DadosPrivadosDiplomado" type="TDadosPrivadosDiplomadoSegundaVia"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="TermoResponsabilidade" type="TTermoResponsabilidade"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="DocumentacaoComprobatoria" type="TDocumentacaoComprobatoria"/>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVersao" use="required">
+			<xs:annotation>
+				<xs:documentation>Versão do leiaute (v1.02)</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="id" use="required">
@@ -53,6 +89,26 @@
     	<xs:sequence>
     		<xs:element name="Filiacao" type="TFiliacao"/>
     		<xs:element name="HistoricoEscolar" type="THistoricoEscolar"/>
+    		<xs:element name="CargaHorariaCurso" type="TNumeroPositivo"/>
+			<xs:element name="IngressoCurso" >
+    			<xs:complexType> 
+    				<xs:sequence>
+			    		<xs:element name="Data" type="TData"/>
+			    		<xs:element name="FormaAcesso" type="TFormaAcessoCurso"/>
+		    			<xs:element name="DataConclusao" type="TData"/>
+	    			</xs:sequence>
+    			</xs:complexType>
+    		</xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TDadosPrivadosDiplomadoSegundaVia" >
+		<xs:annotation>
+			<xs:documentation>Dados do Diplomado para emissão de segunda via digital de diploma expedido em papel.</xs:documentation>
+		</xs:annotation>
+    	<xs:sequence>
+    		<xs:element name="Filiacao" type="TFiliacao"/>
+    		<xs:element minOccurs="0" name="HistoricoEscolar" type="THistoricoEscolar"/>
     		<xs:element name="CargaHorariaCurso" type="TNumeroPositivo"/>
 			<xs:element name="IngressoCurso" >
     			<xs:complexType> 

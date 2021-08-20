@@ -22,11 +22,17 @@
 			<xs:documentation>Tipo Versão</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="TString">
-			<xs:enumeration value="1.00"></xs:enumeration>
+			<xs:enumeration value="1.02"></xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 
 	<!-- TIPOS GERAIS -->
+    <xs:complexType name="TVazio">
+        <xs:annotation>
+			<xs:documentation>Tipo Vazio</xs:documentation>
+		</xs:annotation>
+    </xs:complexType>
+	
 	<xs:simpleType name="TAno">
 		<xs:annotation>
 			<xs:documentation>Tipo ano</xs:documentation>
@@ -231,13 +237,18 @@
 	
 	<xs:group name="GMunicipio">
 		<xs:annotation>
-			<xs:documentation>Grupo de elementos define um município com nome, código do IBGE e UF</xs:documentation>
+			<xs:documentation>Grupo de elementos define um município com nome, código do IBGE e UF. Caso de municipios estrangeiros, é dispensado o do código muninicípio e UF</xs:documentation>
 		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="CodigoMunicipio" type="TCodMunIBGE"/>
-			<xs:element name="NomeMunicipio" type="TNomeMun"/>
-			<xs:element name="UF" type="TUf"/>
-	    </xs:sequence>
+		<xs:choice>
+			<xs:sequence >
+				<xs:element name="CodigoMunicipio" type="TCodMunIBGE"/>
+				<xs:element name="NomeMunicipio" type="TNomeMun"/>
+				<xs:element name="UF" type="TUf"/>
+		    </xs:sequence>
+			<xs:sequence>
+				<xs:element name="NomeMunicipioEstrangeiro" type="TNomeMun"/>
+		    </xs:sequence>
+		</xs:choice>
     </xs:group>
 	
 	<xs:simpleType name="TTitulacao">
@@ -252,6 +263,19 @@
 			<xs:enumeration value="Doutorado" />
 		</xs:restriction>
     </xs:simpleType>
+    
+    <xs:simpleType name="TLattes">
+        <xs:annotation>
+			<xs:documentation>Endereço do currículo lattes</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="TString">
+			<xs:whiteSpace value="collapse" />
+			<xs:pattern value="http://lattes\.cnpq\.br/\d+"></xs:pattern>
+			<xs:maxLength value="255" />
+			<xs:minLength value="1" />
+		</xs:restriction>
+  	</xs:simpleType>
+    
     
 	<!-- TIPOS DADOS PESSOAIS -->
 	<xs:simpleType name="TNome">
@@ -347,7 +371,19 @@
 		
 		<xs:sequence>
 			<xs:element name="Numero" type="TNumeroRg" />
+			<xs:element minOccurs="0" name="OrgaoExpedidor" type="TString" />
 			<xs:element name="UF" type="TUf" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="TOutroDocumentoIdentificacao">
+    	<xs:annotation>
+			<xs:documentation>Tipo Outro Documento de Identificação</xs:documentation>
+		</xs:annotation>
+		
+		<xs:sequence>
+			<xs:element name="TipoDocumento" type="TString" />
+			<xs:element name="Identificador" type="TString" />
 		</xs:sequence>
 	</xs:complexType>
 		
@@ -357,8 +393,8 @@
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:whiteSpace value="collapse" />
-			<xs:maxLength value="11"/>
-			<xs:pattern value="[a-zA-Z0-9]{6,11}"></xs:pattern>
+			<xs:maxLength value="15"/>
+			<xs:pattern value="[a-zA-Z0-9]{6,15}"></xs:pattern>
 		</xs:restriction>
   </xs:simpleType>
 
@@ -400,7 +436,10 @@
         <xs:annotation>
 			<xs:documentation>Tipo Código da IES no MEC</xs:documentation>
 		</xs:annotation>
-		<xs:restriction base="TNumeroPositivo"/>
+		<xs:restriction base="xs:unsignedInt">
+			<xs:minInclusive value="0"/>
+			<xs:pattern value="[0-9]+"/>
+		</xs:restriction>
     </xs:simpleType>
     
     <!-- CURSOS -->
@@ -408,7 +447,10 @@
         <xs:annotation>
 			<xs:documentation>Tipo Código da IES no MEC</xs:documentation>
 		</xs:annotation>
-		<xs:restriction base="TNumeroPositivo" />
+		<xs:restriction base="xs:unsignedInt">
+			<xs:minInclusive value="0"/>
+			<xs:pattern value="[0-9]+"/>
+		</xs:restriction>
     </xs:simpleType>
     
     
@@ -416,7 +458,10 @@
         <xs:annotation>
 			<xs:documentation>Tipo Código da IES no MEC</xs:documentation>
 		</xs:annotation>
-		<xs:restriction base="TNumeroPositivo" />
+		<xs:restriction base="xs:unsignedInt">
+			<xs:minInclusive value="0"/>
+			<xs:pattern value="[0-9]+"/>
+		</xs:restriction>
     </xs:simpleType>
     
 	<xs:simpleType name="TModalidadeCurso">
@@ -429,15 +474,36 @@
 		</xs:restriction>
     </xs:simpleType>
         
-	<xs:simpleType name="TTituloConferido">
+    <xs:complexType name="TTituloConferido">
+    	<xs:choice>
+    		<xs:element name="Titulo" type="TTitulo"/> 
+	    	<xs:element name="OutroTitulo"> 
+				<xs:simpleType>
+			        <xs:annotation>
+						<xs:documentation>Deve ser usado caso o título conferido não esteja contemplado no elemento Titulo. Se existir em Titulo, NÃO se deve usar este elemento</xs:documentation>
+					</xs:annotation>
+					<xs:restriction base="TString">
+						<xs:whiteSpace value="collapse" />
+						<xs:maxLength value="255" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+			    </xs:simpleType>
+	    	</xs:element>
+	    </xs:choice>
+    </xs:complexType>
+        
+    <xs:simpleType name="TTitulo">
         <xs:annotation>
-			<xs:documentation>Tipo título conferido pelo curso</xs:documentation>
+			<xs:documentation>Tipos de  títulos conferido pelo curso</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="TString">
+			<xs:enumeration value="Licenciado"/>
+			<xs:enumeration value="Técnico"/>
 			<xs:enumeration value="Bacharel"/>
-			<xs:enumeration value="Engenheiro"/>
+			<xs:enumeration value="Médico"/>
 		</xs:restriction>
     </xs:simpleType>
+    
         
 	<xs:simpleType name="TGrauConferido">
         <xs:annotation>
@@ -508,7 +574,17 @@
 			<xs:enumeration value="Aprovado"/>
 		</xs:restriction>
     </xs:simpleType>   
-    <xs:simpleType name="TSituacaoAlunoEnadeHistorico">
+    <xs:complexType name="TSituacaoAlunoEnadeHistorico">
+        <xs:annotation>
+			<xs:documentation>Tipo situação do aluno no ENADE. Deve-se utilizar a Situação excplicitada na enumeração a menos que não esteja disposível. Neste caso deve-se usar a opção "Outros</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="Situacao" type="TEnumSituacaoAlunoEnadeHistorico" />
+			<xs:element name="OutraSituacao" type="TString" />
+		</xs:choice>
+    </xs:complexType>
+       
+    <xs:simpleType name="TEnumSituacaoAlunoEnadeHistorico">
         <xs:annotation>
 			<xs:documentation>Tipo situação do aluno no ENADE</xs:documentation>
 		</xs:annotation>
@@ -522,19 +598,30 @@
 			<xs:enumeration value="Dispensado, por razão de ordem pessoal" />
 			<xs:enumeration value="Dispensado, por ato da instituição de ensino" />
 			<xs:enumeration value="Dispensado, em razão de mobilidade acadêmica no exterior" />
+			<xs:enumeration value="Estudante não habilitado ao ENADE em razão do calendário do ciclo avaliativo" />
 		</xs:restriction>
     </xs:simpleType>   
     
     <xs:simpleType name="TNota">
         <xs:annotation>
-			<xs:documentation>Tipo nota</xs:documentation>
+			<xs:documentation>Tipo nota 0 - 10</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="TNumeroPositivo2Casas">
 			<xs:minInclusive value="0"/>
 			<xs:maxInclusive value="10"/>
 		</xs:restriction>
+    </xs:simpleType>
+      
+    <xs:simpleType name="TNotaAteCem">
+        <xs:annotation>
+			<xs:documentation>Tipo nota 0 - 100</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="TNumeroPositivo2Casas">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
     </xs:simpleType>  
-    
+
     <xs:simpleType name="TConceito">
         <xs:annotation>
 			<xs:documentation>Tipo Conceito</xs:documentation>
@@ -561,6 +648,14 @@
 		</xs:restriction>
     </xs:simpleType>
     
+    <xs:simpleType name="TCargaHoraria">
+        <xs:annotation>
+			<xs:documentation>Tipo carga horária em horas</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="TNumeroPositivo">
+		</xs:restriction>
+    </xs:simpleType>  
+    
     <!-- LEGAIS -->
     <xs:simpleType name="TTipoAto"> 
         <xs:annotation>
@@ -576,19 +671,41 @@
 			<xs:enumeration value="Lei Municipal"/>
 		</xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="TTipoAtoComAtoProprio"> 
+        <xs:annotation>
+			<xs:documentation>Tipo de ato</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="TString">
+			<xs:enumeration value="Parecer"/>
+			<xs:enumeration value="Resolução"/>
+			<xs:enumeration value="Decreto"/>
+			<xs:enumeration value="Portaria"/>
+			<xs:enumeration value="Lei Federal"/>
+			<xs:enumeration value="Lei Estadual"/>
+			<xs:enumeration value="Lei Municipal"/>
+            <xs:enumeration value="Ato Próprio" />
+		</xs:restriction>
+    </xs:simpleType>
     
     <xs:simpleType name="TNumeroAto"> 
         <xs:annotation>
 			<xs:documentation>Tipo número de portaria</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="TString">
-			<xs:pattern value="(\d+)(/[\d\w]+)?"/>
+			<xs:pattern value="(\d+)(/[\d\w]+)*"/>
 		</xs:restriction>
     </xs:simpleType>
     
     <xs:simpleType name="TPaginaPublicacao">
         <xs:annotation>
 			<xs:documentation>Tipo página Publicação</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="TNumeroPositivo" />
+    </xs:simpleType>
+    
+    <xs:simpleType name="TNumeroDOU">
+        <xs:annotation>
+			<xs:documentation>Tipo número do diário oficial</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="TNumeroPositivo" />
     </xs:simpleType>
