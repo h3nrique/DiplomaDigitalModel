@@ -14,46 +14,37 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for TTipoAto.
+ * <p>Java class for TTitulo.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="TTipoAto">
+ * &lt;simpleType name="TTitulo">
  *   &lt;restriction base="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TString">
- *     &lt;enumeration value="Parecer"/>
- *     &lt;enumeration value="Resolução"/>
- *     &lt;enumeration value="Decreto"/>
- *     &lt;enumeration value="Portaria"/>
- *     &lt;enumeration value="Lei Federal"/>
- *     &lt;enumeration value="Lei Estadual"/>
- *     &lt;enumeration value="Lei Municipal"/>
+ *     &lt;enumeration value="Licenciado"/>
+ *     &lt;enumeration value="Técnico"/>
+ *     &lt;enumeration value="Bacharel"/>
+ *     &lt;enumeration value="Médico"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "TTipoAto")
+@XmlType(name = "TTitulo")
 @XmlEnum
-public enum TTipoAto {
+public enum TTitulo {
 
-    @XmlEnumValue("Parecer")
-    PARECER("Parecer"),
-    @XmlEnumValue("Resolu\u00e7\u00e3o")
-    RESOLUÇÃO("Resolu\u00e7\u00e3o"),
-    @XmlEnumValue("Decreto")
-    DECRETO("Decreto"),
-    @XmlEnumValue("Portaria")
-    PORTARIA("Portaria"),
-    @XmlEnumValue("Lei Federal")
-    LEI_FEDERAL("Lei Federal"),
-    @XmlEnumValue("Lei Estadual")
-    LEI_ESTADUAL("Lei Estadual"),
-    @XmlEnumValue("Lei Municipal")
-    LEI_MUNICIPAL("Lei Municipal");
+    @XmlEnumValue("Licenciado")
+    LICENCIADO("Licenciado"),
+    @XmlEnumValue("T\u00e9cnico")
+    TÉCNICO("T\u00e9cnico"),
+    @XmlEnumValue("Bacharel")
+    BACHAREL("Bacharel"),
+    @XmlEnumValue("M\u00e9dico")
+    MÉDICO("M\u00e9dico");
     private final String value;
 
-    TTipoAto(String v) {
+    TTitulo(String v) {
         value = v;
     }
 
@@ -61,8 +52,8 @@ public enum TTipoAto {
         return value;
     }
 
-    public static TTipoAto fromValue(String v) {
-        for (TTipoAto c: TTipoAto.values()) {
+    public static TTitulo fromValue(String v) {
+        for (TTitulo c: TTitulo.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

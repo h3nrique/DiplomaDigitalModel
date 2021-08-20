@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.fabricads.gov.mec</groupId>
 	<artifactId>DiplomaDigitalModel</artifactId>
-	<version>1.00</version>
+	<version>1.02</version>
 	<packaging>jar</packaging>
 
 	<properties>

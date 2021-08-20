@@ -15,32 +15,34 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlID;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import javax.xml.datatype.XMLGregorianCalendar;
 import org.w3._2000._09.xmldsig_.SignatureType;
-
-import br.com.fabricads.gov.handler.XMLGregorianCalendarAdapter;
 
 
 /**
- * Tipo Diploma Digital
+ * Tipo de dados do registro do diploma digital flexibilizado para Universidades fora do sistema federal de ensino
  * 
- * <p>Java class for TDadosDiploma complex type.
+ * <p>Java class for TDadosRegistroNSF complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="TDadosDiploma">
+ * &lt;complexType name="TDadosRegistroNSF">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Diplomado" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TDadosDiplomado"/>
- *         &lt;element name="DataConclusao" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TData" minOccurs="0"/>
- *         &lt;element name="DadosCurso" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TDadosCurso"/>
- *         &lt;element name="IesEmissora" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TDadosIesEmissora"/>
+ *         &lt;element name="IesRegistradora" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TDadosIesRegistradora"/>
+ *         &lt;element name="LivroRegistro" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TLivroRegistroNSF"/>
+ *         &lt;element name="IdDocumentacaoAcademica">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}ID">
+ *               &lt;pattern value="ReqDip[0-9]{44}"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
+ *         &lt;element name="Seguranca" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TSeguranca"/>
  *         &lt;sequence maxOccurs="unbounded">
  *           &lt;element ref="{http://www.w3.org/2000/09/xmldsig#}Signature"/>
  *         &lt;/sequence>
@@ -48,7 +50,7 @@ import br.com.fabricads.gov.handler.XMLGregorianCalendarAdapter;
  *       &lt;attribute name="id" use="required">
  *         &lt;simpleType>
  *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}ID">
- *             &lt;pattern value="Dip[0-9]{44}"/>
+ *             &lt;pattern value="RDip[0-9]{44}"/>
  *           &lt;/restriction>
  *         &lt;/simpleType>
  *       &lt;/attribute>
@@ -60,25 +62,25 @@ import br.com.fabricads.gov.handler.XMLGregorianCalendarAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TDadosDiploma", propOrder = {
-    "diplomado",
-    "dataConclusao",
-    "dadosCurso",
-    "iesEmissora",
+@XmlType(name = "TDadosRegistroNSF", propOrder = {
+    "iesRegistradora",
+    "livroRegistro",
+    "idDocumentacaoAcademica",
+    "seguranca",
     "signature"
 })
-public class TDadosDiploma {
+public class TDadosRegistroNSF {
 
-    @XmlElement(name = "Diplomado", required = true)
-    protected TDadosDiplomado diplomado;
-    @XmlElement(name = "DataConclusao")
-    @XmlSchemaType(name = "date")
-    @XmlJavaTypeAdapter(XMLGregorianCalendarAdapter.class)
-    protected XMLGregorianCalendar dataConclusao;
-    @XmlElement(name = "DadosCurso", required = true)
-    protected TDadosCurso dadosCurso;
-    @XmlElement(name = "IesEmissora", required = true)
-    protected TDadosIesEmissora iesEmissora;
+    @XmlElement(name = "IesRegistradora", required = true)
+    protected TDadosIesRegistradora iesRegistradora;
+    @XmlElement(name = "LivroRegistro", required = true)
+    protected TLivroRegistroNSF livroRegistro;
+    @XmlElement(name = "IdDocumentacaoAcademica", required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlID
+    protected String idDocumentacaoAcademica;
+    @XmlElement(name = "Seguranca", required = true)
+    protected TSeguranca seguranca;
     @XmlElement(name = "Signature", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
     protected List<SignatureType> signature;
     @XmlAttribute(name = "id", required = true)
@@ -87,99 +89,99 @@ public class TDadosDiploma {
     protected String id;
 
     /**
-     * Gets the value of the diplomado property.
+     * Gets the value of the iesRegistradora property.
      * 
      * @return
      *     possible object is
-     *     {@link TDadosDiplomado }
+     *     {@link TDadosIesRegistradora }
      *     
      */
-    public TDadosDiplomado getDiplomado() {
-        return diplomado;
+    public TDadosIesRegistradora getIesRegistradora() {
+        return iesRegistradora;
     }
 
     /**
-     * Sets the value of the diplomado property.
+     * Sets the value of the iesRegistradora property.
      * 
      * @param value
      *     allowed object is
-     *     {@link TDadosDiplomado }
+     *     {@link TDadosIesRegistradora }
      *     
      */
-    public void setDiplomado(TDadosDiplomado value) {
-        this.diplomado = value;
+    public void setIesRegistradora(TDadosIesRegistradora value) {
+        this.iesRegistradora = value;
     }
 
     /**
-     * Gets the value of the dataConclusao property.
+     * Gets the value of the livroRegistro property.
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link TLivroRegistroNSF }
      *     
      */
-    public XMLGregorianCalendar getDataConclusao() {
-        return dataConclusao;
+    public TLivroRegistroNSF getLivroRegistro() {
+        return livroRegistro;
     }
 
     /**
-     * Sets the value of the dataConclusao property.
+     * Sets the value of the livroRegistro property.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link TLivroRegistroNSF }
      *     
      */
-    public void setDataConclusao(XMLGregorianCalendar value) {
-        this.dataConclusao = value;
+    public void setLivroRegistro(TLivroRegistroNSF value) {
+        this.livroRegistro = value;
     }
 
     /**
-     * Gets the value of the dadosCurso property.
+     * Gets the value of the idDocumentacaoAcademica property.
      * 
      * @return
      *     possible object is
-     *     {@link TDadosCurso }
+     *     {@link String }
      *     
      */
-    public TDadosCurso getDadosCurso() {
-        return dadosCurso;
+    public String getIdDocumentacaoAcademica() {
+        return idDocumentacaoAcademica;
     }
 
     /**
-     * Sets the value of the dadosCurso property.
+     * Sets the value of the idDocumentacaoAcademica property.
      * 
      * @param value
      *     allowed object is
-     *     {@link TDadosCurso }
+     *     {@link String }
      *     
      */
-    public void setDadosCurso(TDadosCurso value) {
-        this.dadosCurso = value;
+    public void setIdDocumentacaoAcademica(String value) {
+        this.idDocumentacaoAcademica = value;
     }
 
     /**
-     * Gets the value of the iesEmissora property.
+     * Gets the value of the seguranca property.
      * 
      * @return
      *     possible object is
-     *     {@link TDadosIesEmissora }
+     *     {@link TSeguranca }
      *     
      */
-    public TDadosIesEmissora getIesEmissora() {
-        return iesEmissora;
+    public TSeguranca getSeguranca() {
+        return seguranca;
     }
 
     /**
-     * Sets the value of the iesEmissora property.
+     * Sets the value of the seguranca property.
      * 
      * @param value
      *     allowed object is
-     *     {@link TDadosIesEmissora }
+     *     {@link TSeguranca }
      *     
      */
-    public void setIesEmissora(TDadosIesEmissora value) {
-        this.iesEmissora = value;
+    public void setSeguranca(TSeguranca value) {
+        this.seguranca = value;
     }
 
     /**

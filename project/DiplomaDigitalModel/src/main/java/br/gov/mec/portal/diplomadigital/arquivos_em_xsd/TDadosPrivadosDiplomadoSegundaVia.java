@@ -20,19 +20,19 @@ import br.com.fabricads.gov.handler.XMLGregorianCalendarAdapter;
 
 
 /**
- * Dados do Diplomado
+ * Dados do Diplomado para emissão de segunda via digital de diploma expedido em papel.
  * 
- * <p>Java class for TDadosPrivadosDiplomado complex type.
+ * <p>Java class for TDadosPrivadosDiplomadoSegundaVia complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="TDadosPrivadosDiplomado">
+ * &lt;complexType name="TDadosPrivadosDiplomadoSegundaVia">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="Filiacao" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TFiliacao"/>
- *         &lt;element name="HistoricoEscolar" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}THistoricoEscolar"/>
+ *         &lt;element name="HistoricoEscolar" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}THistoricoEscolar" minOccurs="0"/>
  *         &lt;element name="CargaHorariaCurso" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TNumeroPositivo"/>
  *         &lt;element name="IngressoCurso">
  *           &lt;complexType>
@@ -56,23 +56,23 @@ import br.com.fabricads.gov.handler.XMLGregorianCalendarAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TDadosPrivadosDiplomado", propOrder = {
+@XmlType(name = "TDadosPrivadosDiplomadoSegundaVia", propOrder = {
     "filiacao",
     "historicoEscolar",
     "cargaHorariaCurso",
     "ingressoCurso"
 })
-public class TDadosPrivadosDiplomado {
+public class TDadosPrivadosDiplomadoSegundaVia {
 
     @XmlElement(name = "Filiacao", required = true)
     protected TFiliacao filiacao;
-    @XmlElement(name = "HistoricoEscolar", required = true)
+    @XmlElement(name = "HistoricoEscolar")
     protected THistoricoEscolar historicoEscolar;
     @XmlElement(name = "CargaHorariaCurso")
     @XmlSchemaType(name = "unsignedInt")
     protected long cargaHorariaCurso;
     @XmlElement(name = "IngressoCurso", required = true)
-    protected TDadosPrivadosDiplomado.IngressoCurso ingressoCurso;
+    protected TDadosPrivadosDiplomadoSegundaVia.IngressoCurso ingressoCurso;
 
     /**
      * Gets the value of the filiacao property.
@@ -143,10 +143,10 @@ public class TDadosPrivadosDiplomado {
      * 
      * @return
      *     possible object is
-     *     {@link TDadosPrivadosDiplomado.IngressoCurso }
+     *     {@link TDadosPrivadosDiplomadoSegundaVia.IngressoCurso }
      *     
      */
-    public TDadosPrivadosDiplomado.IngressoCurso getIngressoCurso() {
+    public TDadosPrivadosDiplomadoSegundaVia.IngressoCurso getIngressoCurso() {
         return ingressoCurso;
     }
 
@@ -155,10 +155,10 @@ public class TDadosPrivadosDiplomado {
      * 
      * @param value
      *     allowed object is
-     *     {@link TDadosPrivadosDiplomado.IngressoCurso }
+     *     {@link TDadosPrivadosDiplomadoSegundaVia.IngressoCurso }
      *     
      */
-    public void setIngressoCurso(TDadosPrivadosDiplomado.IngressoCurso value) {
+    public void setIngressoCurso(TDadosPrivadosDiplomadoSegundaVia.IngressoCurso value) {
         this.ingressoCurso = value;
     }
 

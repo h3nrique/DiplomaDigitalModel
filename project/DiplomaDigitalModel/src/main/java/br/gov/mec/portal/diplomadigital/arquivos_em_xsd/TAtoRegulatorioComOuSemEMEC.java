@@ -20,18 +20,18 @@ import br.com.fabricads.gov.handler.XMLGregorianCalendarAdapter;
 
 
 /**
- * Ato regulatório
+ * Ato regulatório de reconhecimento
  * 
- * <p>Java class for TAtoRegulatorio complex type.
+ * <p>Java class for TAtoRegulatorioComOuSemEMEC complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="TAtoRegulatorio">
+ * &lt;complexType name="TAtoRegulatorioComOuSemEMEC">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Tipo" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TTipoAto"/>
+ *         &lt;element name="Tipo" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TTipoAtoComAtoProprio"/>
  *         &lt;element name="Numero" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TNumeroAto"/>
  *         &lt;element name="Data" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TData"/>
  *         &lt;element name="VeiculoPublicacao" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TString" minOccurs="0"/>
@@ -39,6 +39,7 @@ import br.com.fabricads.gov.handler.XMLGregorianCalendarAdapter;
  *         &lt;element name="SecaoPublicacao" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TSecaoPublicacao" minOccurs="0"/>
  *         &lt;element name="PaginaPublicacao" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TPaginaPublicacao" minOccurs="0"/>
  *         &lt;element name="NumeroDOU" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TNumeroDOU" minOccurs="0"/>
+ *         &lt;element name="InformacoesTramitacaoEMEC" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TInformacoesTramitacaoEMEC" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -48,7 +49,7 @@ import br.com.fabricads.gov.handler.XMLGregorianCalendarAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TAtoRegulatorio", propOrder = {
+@XmlType(name = "TAtoRegulatorioComOuSemEMEC", propOrder = {
     "tipo",
     "numero",
     "data",
@@ -56,13 +57,14 @@ import br.com.fabricads.gov.handler.XMLGregorianCalendarAdapter;
     "dataPublicacao",
     "secaoPublicacao",
     "paginaPublicacao",
-    "numeroDOU"
+    "numeroDOU",
+    "informacoesTramitacaoEMEC"
 })
-public class TAtoRegulatorio {
+public class TAtoRegulatorioComOuSemEMEC {
 
     @XmlElement(name = "Tipo", required = true)
     @XmlSchemaType(name = "string")
-    protected TTipoAto tipo;
+    protected TTipoAtoComAtoProprio tipo;
     @XmlElement(name = "Numero", required = true)
     protected String numero;
     @XmlElement(name = "Data", required = true)
@@ -84,16 +86,18 @@ public class TAtoRegulatorio {
     @XmlElement(name = "NumeroDOU")
     @XmlSchemaType(name = "unsignedInt")
     protected Long numeroDOU;
+    @XmlElement(name = "InformacoesTramitacaoEMEC")
+    protected TInformacoesTramitacaoEMEC informacoesTramitacaoEMEC;
 
     /**
      * Gets the value of the tipo property.
      * 
      * @return
      *     possible object is
-     *     {@link TTipoAto }
+     *     {@link TTipoAtoComAtoProprio }
      *     
      */
-    public TTipoAto getTipo() {
+    public TTipoAtoComAtoProprio getTipo() {
         return tipo;
     }
 
@@ -102,10 +106,10 @@ public class TAtoRegulatorio {
      * 
      * @param value
      *     allowed object is
-     *     {@link TTipoAto }
+     *     {@link TTipoAtoComAtoProprio }
      *     
      */
-    public void setTipo(TTipoAto value) {
+    public void setTipo(TTipoAtoComAtoProprio value) {
         this.tipo = value;
     }
 
@@ -275,6 +279,30 @@ public class TAtoRegulatorio {
      */
     public void setNumeroDOU(Long value) {
         this.numeroDOU = value;
+    }
+
+    /**
+     * Gets the value of the informacoesTramitacaoEMEC property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link TInformacoesTramitacaoEMEC }
+     *     
+     */
+    public TInformacoesTramitacaoEMEC getInformacoesTramitacaoEMEC() {
+        return informacoesTramitacaoEMEC;
+    }
+
+    /**
+     * Sets the value of the informacoesTramitacaoEMEC property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TInformacoesTramitacaoEMEC }
+     *     
+     */
+    public void setInformacoesTramitacaoEMEC(TInformacoesTramitacaoEMEC value) {
+        this.informacoesTramitacaoEMEC = value;
     }
 
 }

@@ -19,14 +19,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
- * Tipo Requisição de Registro de Diploma Digital
+ * Tipo Requisição de Registro de Diploma Digital como segunda via de um diploma físico
  * 
- * <p>Java class for TRegistroReq complex type.
+ * <p>Java class for TRegistroSegundaViaReq complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="TRegistroReq">
+ * &lt;complexType name="TRegistroSegundaViaReq">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *           &lt;element name="DadosDiploma" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TDadosDiploma"/>
  *           &lt;element name="DadosDiplomaNSF" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TDadosDiplomaNSF"/>
  *         &lt;/choice>
- *         &lt;element name="DadosPrivadosDiplomado" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TDadosPrivadosDiplomado"/>
+ *         &lt;element name="DadosPrivadosDiplomado" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TDadosPrivadosDiplomadoSegundaVia"/>
  *         &lt;element name="TermoResponsabilidade" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TTermoResponsabilidade" minOccurs="0"/>
  *         &lt;element name="DocumentacaoComprobatoria" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TDocumentacaoComprobatoria" minOccurs="0"/>
  *       &lt;/sequence>
@@ -54,21 +54,21 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TRegistroReq", propOrder = {
+@XmlType(name = "TRegistroSegundaViaReq", propOrder = {
     "dadosDiploma",
     "dadosDiplomaNSF",
     "dadosPrivadosDiplomado",
     "termoResponsabilidade",
     "documentacaoComprobatoria"
 })
-public class TRegistroReq {
+public class TRegistroSegundaViaReq {
 
     @XmlElement(name = "DadosDiploma")
     protected TDadosDiploma dadosDiploma;
     @XmlElement(name = "DadosDiplomaNSF")
     protected TDadosDiplomaNSF dadosDiplomaNSF;
     @XmlElement(name = "DadosPrivadosDiplomado", required = true)
-    protected TDadosPrivadosDiplomado dadosPrivadosDiplomado;
+    protected TDadosPrivadosDiplomadoSegundaVia dadosPrivadosDiplomado;
     @XmlElement(name = "TermoResponsabilidade")
     protected TTermoResponsabilidade termoResponsabilidade;
     @XmlElement(name = "DocumentacaoComprobatoria")
@@ -133,10 +133,10 @@ public class TRegistroReq {
      * 
      * @return
      *     possible object is
-     *     {@link TDadosPrivadosDiplomado }
+     *     {@link TDadosPrivadosDiplomadoSegundaVia }
      *     
      */
-    public TDadosPrivadosDiplomado getDadosPrivadosDiplomado() {
+    public TDadosPrivadosDiplomadoSegundaVia getDadosPrivadosDiplomado() {
         return dadosPrivadosDiplomado;
     }
 
@@ -145,10 +145,10 @@ public class TRegistroReq {
      * 
      * @param value
      *     allowed object is
-     *     {@link TDadosPrivadosDiplomado }
+     *     {@link TDadosPrivadosDiplomadoSegundaVia }
      *     
      */
-    public void setDadosPrivadosDiplomado(TDadosPrivadosDiplomado value) {
+    public void setDadosPrivadosDiplomado(TDadosPrivadosDiplomadoSegundaVia value) {
         this.dadosPrivadosDiplomado = value;
     }
 

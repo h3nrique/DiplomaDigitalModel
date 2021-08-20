@@ -16,14 +16,14 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * Dados do curso
+ * Dados do curso de universidades fora do sistema federal - flexibiliza algumas exigências
  * 
- * <p>Java class for TDadosCurso complex type.
+ * <p>Java class for TDadosCursoNSF complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="TDadosCurso">
+ * &lt;complexType name="TDadosCursoNSF">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -42,8 +42,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="GrauConferido" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TGrauConferido"/>
  *         &lt;element name="EnderecoCurso" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TEndereco"/>
  *         &lt;element name="Polo" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TPolo" minOccurs="0"/>
- *         &lt;element name="Autorizacao" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TAtoRegulatorioComOuSemEMEC"/>
- *         &lt;element name="Reconhecimento" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TAtoRegulatorioComOuSemEMEC"/>
+ *         &lt;element name="Autorizacao" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TAtoRegulatorioComOuSemEMEC" minOccurs="0"/>
+ *         &lt;element name="Reconhecimento" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TAtoRegulatorioComOuSemEMEC" minOccurs="0"/>
  *         &lt;element name="RenovacaoReconhecimento" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TAtoRegulatorioComOuSemEMEC" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -54,7 +54,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TDadosCurso", propOrder = {
+@XmlType(name = "TDadosCursoNSF", propOrder = {
     "nomeCurso",
     "codigoCursoEMEC",
     "semCodigoCursoEMEC",
@@ -68,7 +68,7 @@ import javax.xml.bind.annotation.XmlType;
     "reconhecimento",
     "renovacaoReconhecimento"
 })
-public class TDadosCurso {
+public class TDadosCursoNSF {
 
     @XmlElement(name = "NomeCurso", required = true)
     protected String nomeCurso;
@@ -91,9 +91,9 @@ public class TDadosCurso {
     protected TEndereco enderecoCurso;
     @XmlElement(name = "Polo")
     protected TPolo polo;
-    @XmlElement(name = "Autorizacao", required = true)
+    @XmlElement(name = "Autorizacao")
     protected TAtoRegulatorioComOuSemEMEC autorizacao;
-    @XmlElement(name = "Reconhecimento", required = true)
+    @XmlElement(name = "Reconhecimento")
     protected TAtoRegulatorioComOuSemEMEC reconhecimento;
     @XmlElement(name = "RenovacaoReconhecimento")
     protected TAtoRegulatorioComOuSemEMEC renovacaoReconhecimento;

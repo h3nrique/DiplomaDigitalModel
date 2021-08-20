@@ -14,12 +14,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for TTipoAto.
+ * <p>Java class for TTipoAtoComAtoProprio.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="TTipoAto">
+ * &lt;simpleType name="TTipoAtoComAtoProprio">
  *   &lt;restriction base="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TString">
  *     &lt;enumeration value="Parecer"/>
  *     &lt;enumeration value="Resolução"/>
@@ -28,14 +28,15 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="Lei Federal"/>
  *     &lt;enumeration value="Lei Estadual"/>
  *     &lt;enumeration value="Lei Municipal"/>
+ *     &lt;enumeration value="Ato Próprio"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "TTipoAto")
+@XmlType(name = "TTipoAtoComAtoProprio")
 @XmlEnum
-public enum TTipoAto {
+public enum TTipoAtoComAtoProprio {
 
     @XmlEnumValue("Parecer")
     PARECER("Parecer"),
@@ -50,10 +51,12 @@ public enum TTipoAto {
     @XmlEnumValue("Lei Estadual")
     LEI_ESTADUAL("Lei Estadual"),
     @XmlEnumValue("Lei Municipal")
-    LEI_MUNICIPAL("Lei Municipal");
+    LEI_MUNICIPAL("Lei Municipal"),
+    @XmlEnumValue("Ato Pr\u00f3prio")
+    ATO_PRÓPRIO("Ato Pr\u00f3prio");
     private final String value;
 
-    TTipoAto(String v) {
+    TTipoAtoComAtoProprio(String v) {
         value = v;
     }
 
@@ -61,8 +64,8 @@ public enum TTipoAto {
         return value;
     }
 
-    public static TTipoAto fromValue(String v) {
-        for (TTipoAto c: TTipoAto.values()) {
+    public static TTipoAtoComAtoProprio fromValue(String v) {
+        for (TTipoAtoComAtoProprio c: TTipoAtoComAtoProprio.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

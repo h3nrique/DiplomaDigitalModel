@@ -26,20 +26,20 @@ import br.com.fabricads.gov.handler.XMLGregorianCalendarAdapter;
 
 
 /**
- * Tipo Diploma Digital
+ * Tipo Diploma Digital para Universidade fora do sistema federal de ensino - Flexibiliza a obrigatoriedade de alguns elementos
  * 
- * <p>Java class for TDadosDiploma complex type.
+ * <p>Java class for TDadosDiplomaNSF complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="TDadosDiploma">
+ * &lt;complexType name="TDadosDiplomaNSF">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="Diplomado" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TDadosDiplomado"/>
  *         &lt;element name="DataConclusao" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TData" minOccurs="0"/>
- *         &lt;element name="DadosCurso" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TDadosCurso"/>
+ *         &lt;element name="DadosCurso" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TDadosCursoNSF"/>
  *         &lt;element name="IesEmissora" type="{http://portal.mec.gov.br/diplomadigital/arquivos-em-xsd}TDadosIesEmissora"/>
  *         &lt;sequence maxOccurs="unbounded">
  *           &lt;element ref="{http://www.w3.org/2000/09/xmldsig#}Signature"/>
@@ -60,14 +60,14 @@ import br.com.fabricads.gov.handler.XMLGregorianCalendarAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TDadosDiploma", propOrder = {
+@XmlType(name = "TDadosDiplomaNSF", propOrder = {
     "diplomado",
     "dataConclusao",
     "dadosCurso",
     "iesEmissora",
     "signature"
 })
-public class TDadosDiploma {
+public class TDadosDiplomaNSF {
 
     @XmlElement(name = "Diplomado", required = true)
     protected TDadosDiplomado diplomado;
@@ -76,7 +76,7 @@ public class TDadosDiploma {
     @XmlJavaTypeAdapter(XMLGregorianCalendarAdapter.class)
     protected XMLGregorianCalendar dataConclusao;
     @XmlElement(name = "DadosCurso", required = true)
-    protected TDadosCurso dadosCurso;
+    protected TDadosCursoNSF dadosCurso;
     @XmlElement(name = "IesEmissora", required = true)
     protected TDadosIesEmissora iesEmissora;
     @XmlElement(name = "Signature", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
@@ -139,10 +139,10 @@ public class TDadosDiploma {
      * 
      * @return
      *     possible object is
-     *     {@link TDadosCurso }
+     *     {@link TDadosCursoNSF }
      *     
      */
-    public TDadosCurso getDadosCurso() {
+    public TDadosCursoNSF getDadosCurso() {
         return dadosCurso;
     }
 
@@ -151,10 +151,10 @@ public class TDadosDiploma {
      * 
      * @param value
      *     allowed object is
-     *     {@link TDadosCurso }
+     *     {@link TDadosCursoNSF }
      *     
      */
-    public void setDadosCurso(TDadosCurso value) {
+    public void setDadosCurso(TDadosCursoNSF value) {
         this.dadosCurso = value;
     }
 
