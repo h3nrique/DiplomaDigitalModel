@@ -5,6 +5,7 @@
 	<artifactId>diploma-digital-model</artifactId>
 	<version>1.02</version>
 	<packaging>jar</packaging>
+    <url>https://github.com/h3nrique/DiplomaDigitalModel</url>
 
     <name>DiplomaDigitalModel</name>
     <description>Model para Diploma Digital</description>
@@ -18,8 +19,41 @@
     </licenses>
     
     <scm>
-        <url>https://github.com/h3nrique/DiplomaDigitalModel/tree/master</url>
+        <connection>scm:git:git://github.com/h3nrique/DiplomaDigitalModel.git</connection>
+        <developerConnection>scm:git:git://github.com/h3nrique/DiplomaDigitalModel.git</developerConnection>
+        <url>https://github.com/h3nrique/DiplomaDigitalModel</url>
+        <tag>master</tag>
     </scm>
+
+    <developers>
+        <developer>
+            <id>h3nrique</id>
+            <name>Paulo H3nrique Alves</name>
+            <email>paulo.alves@fabricads.com.br</email>
+            <organization>FábricaDS</organization>
+            <organizationUrl>https://www.fabricads.com.br/</organizationUrl>
+            <roles>
+                <role>consultant</role>
+                <role>architect</role>
+            </roles>
+            <timezone>-3</timezone>
+
+            <properties>
+                <picUrl>https://avatars.githubusercontent.com/u/813562</picUrl>
+            </properties>
+        </developer>
+    </developers>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -101,6 +135,60 @@
 					<target>${maven.compiler.target}</target>
 				</configuration>
 			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <additionalparam>-Xdoclint:none</additionalparam>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+              </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+              </plugin>
 		</plugins>
 	</build>
 </project>
