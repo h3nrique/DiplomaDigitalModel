@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.h3nrique</groupId>
 	<artifactId>diploma-digital-model</artifactId>
-	<version>1.02</version>
+	<version>1.02-2</version>
 	<packaging>jar</packaging>
     <url>https://github.com/h3nrique/DiplomaDigitalModel</url>
 
