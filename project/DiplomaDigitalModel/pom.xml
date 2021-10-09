@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.h3nrique</groupId>
 	<artifactId>diploma-digital-model</artifactId>
-	<version>1.02-2</version>
+	<version>1.02-3</version>
 	<packaging>jar</packaging>
     <url>https://github.com/h3nrique/DiplomaDigitalModel</url>
 
@@ -64,23 +64,21 @@
 		<maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
 		<maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
 		<maven.source.plugin.version>3.0.1</maven.source.plugin.version>
+		<maven.gpg.plugin.version>1.5</maven.gpg.plugin.version>
+		<maven.sonatype.staging.plugin.version>1.6.7</maven.sonatype.staging.plugin.version>
+		<maven.codehaus.jaxb2.plugin.version>2.5.0</maven.codehaus.jaxb2.plugin.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
-			<version>2.3.0</version>
-		  </dependency>
-		  <dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-core</artifactId>
-			<version>2.3.0</version>
+			<version>2.3.1</version>
 		  </dependency>
 		  <dependency>
 			<groupId>com.sun.xml.bind</groupId>
 			<artifactId>jaxb-impl</artifactId>
-			<version>2.3.0</version>
+			<version>3.0.0</version>
 		  </dependency>
 	</dependencies>
 
@@ -136,9 +134,25 @@
 				</configuration>
 			</plugin>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>${maven.codehaus.jaxb2.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>xsd-to-java</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <packageName>io.github.h3nrique.diplomadigitalmodel</packageName>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>${maven.source.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -151,7 +165,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
+                <version>${maven.javadoc.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -161,13 +175,14 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <source>7</source>
                     <additionalparam>-Xdoclint:none</additionalparam>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.5</version>
+                <version>${maven.gpg.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -181,7 +196,7 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.7</version>
+                <version>${maven.sonatype.staging.plugin.version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
