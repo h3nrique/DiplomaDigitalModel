@@ -8,19 +8,21 @@
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema_v1.1.xsd"/>
 	<xs:include schemaLocation="leiauteDiplomaDigital_v1.02.xsd" />
 	<xs:include schemaLocation="tiposBasicos_v1.02.xsd" />
-    
-    <xs:complexType name="TDocumentacaoAcademicaRegistro">
-		<xs:annotation>
-			<xs:documentation>Tipo Documentação Acadêmica para Emissão e Registro</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:choice>
-				<xs:element minOccurs="1" maxOccurs="1" name="RegistroReq" type="TRegistroReq"/>
-				<xs:element minOccurs="1" maxOccurs="1" name="RegistroSegundaViaReq" type="TRegistroSegundaViaReq"/>
-			</xs:choice>
-			<xs:element ref="ds:Signature"/>
-		</xs:sequence>
-    </xs:complexType>
+
+	<xs:element name="DocumentacaoAcademicaRegistro">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Documentação Acadêmica para Emissão e Registro de Diplomas Digitais</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element minOccurs="1" maxOccurs="1" name="RegistroReq" type="TRegistroReq"/>
+					<xs:element minOccurs="1" maxOccurs="1" name="RegistroSegundaViaReq" type="TRegistroSegundaViaReq"/>
+				</xs:choice>
+				<xs:element ref="ds:Signature"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
     
     <xs:complexType name="TRegistroReq">
 		<xs:annotation>
