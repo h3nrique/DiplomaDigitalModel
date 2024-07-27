@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.h3nrique</groupId>
 	<artifactId>diploma-digital-model</artifactId>
-	<version>1.02-4</version>
+	<version>1.05-1</version>
 	<packaging>jar</packaging>
     <url>https://github.com/h3nrique/DiplomaDigitalModel</url>
 
@@ -57,8 +57,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
 
 		<maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
 		<maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
@@ -178,7 +178,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <source>7</source>
+                    <source>8</source>
                     <additionalparam>-Xdoclint:none</additionalparam>
                 </configuration>
             </plugin>
