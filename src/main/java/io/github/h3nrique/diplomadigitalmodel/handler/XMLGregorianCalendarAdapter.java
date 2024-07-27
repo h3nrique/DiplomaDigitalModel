@@ -1,6 +1,6 @@
-package br.com.fabricads.gov.handler;
+package io.github.h3nrique.diplomadigitalmodel.handler;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.text.DateFormat;
